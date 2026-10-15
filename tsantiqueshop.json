@@ -3,7 +3,7 @@
   "name": "TSAntiqueshop",
   "previewText": "TSAntiqueshop Custom Font",
   "main": {
-    "ABCGintoNord-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
+    "ABCGintoNord-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop-Bold.ttf",
 
     "ggsans-Normal": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
     "ggsans-Medium": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
@@ -17,6 +17,6 @@
     "NotoSans-Bold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop-Bold.ttf",
     "NotoSans-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop-Bold.ttf",
 
-    "SourceCodePro-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf"
+    "SourceCodePro-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop-Bold.ttf"
   }
 }
