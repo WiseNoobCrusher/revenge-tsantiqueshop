@@ -3,20 +3,20 @@
   "name": "TSAntiqueshop",
   "previewText": "TSAntiqueshop Custom Font",
   "main": {
-    "ABCGintoNord-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
+    "ABCGintoNord-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
 
-    "ggsans-Normal": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "ggsans-Medium": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "ggsans-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "ggsans-Bold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "ggsans-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
+    "ggsans-Normal": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "ggsans-Medium": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "ggsans-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "ggsans-Bold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "ggsans-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
 
-    "NotoSans-Normal": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "NotoSans-Medium": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "NotoSans-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "NotoSans-Bold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
-    "NotoSans-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf",
+    "NotoSans-Normal": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "NotoSans-Medium": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "NotoSans-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "NotoSans-Bold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
+    "NotoSans-ExtraBold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf",
 
-    "SourceCodePro-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/raw/refs/heads/main/TSantiqueshop.ttf"
+    "SourceCodePro-Semibold": "https://github.com/WiseNoobCrusher/revenge-tsantiqueshop/blob/main/TSantiqueshop.ttf"
   }
 }
