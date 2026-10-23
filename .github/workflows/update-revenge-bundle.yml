@@ -21,9 +21,7 @@ jobs:
         run: |
           # Add run IDs you want to skip here.
           EXEMPT_RUNS=(
-            12345678901
-            12345678902
-            12345678903
+            39983030995
           )
 
           echo "Exempted runs:"
