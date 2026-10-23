@@ -14,64 +14,27 @@ jobs:
       - name: Checkout revenge-tsantiqueshop
         uses: actions/checkout@v7
 
-      - name: Find latest allowed Revenge build
+      - name: Find latest successful Revenge build
         id: latest
         env:
           GH_TOKEN: ${{ secrets.REVENGE_TOKEN }}
         run: |
-          # Add run IDs you want to skip here.
-          EXEMPT_RUNS=(
-            39983030995
-          )
+          RUN_ID=$(gh run list \
+            --repo revenge-mod/revenge-bundle-next \
+            --workflow build.yml \
+            --branch main \
+            --status success \
+            --limit 1 \
+            --json databaseId \
+            --jq '.[0].databaseId')
 
-          echo "Exempted runs:"
-          printf '%s\n' "${EXEMPT_RUNS[@]}"
-
-          # Get the latest successful runs, newest first.
-          mapfile -t RUNS < <(
-            gh run list \
-              --repo revenge-mod/revenge-bundle-next \
-              --workflow build.yml \
-              --branch main \
-              --status success \
-              --limit 20 \
-              --json databaseId \
-              --jq '.[].databaseId'
-          )
-
-          if [ "${#RUNS[@]}" -eq 0 ]; then
-            echo "Could not find any successful Build workflow runs."
+          if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
+            echo "Could not find a successful Build workflow."
             exit 1
           fi
 
-          SELECTED_RUN=""
-
-          for RUN_ID in "${RUNS[@]}"; do
-            EXEMPT=false
-
-            for EXEMPT_ID in "${EXEMPT_RUNS[@]}"; do
-              if [ "$RUN_ID" = "$EXEMPT_ID" ]; then
-                EXEMPT=true
-                break
-              fi
-            done
-
-            if [ "$EXEMPT" = true ]; then
-              echo "Skipping exempted run: $RUN_ID"
-              continue
-            fi
-
-            SELECTED_RUN="$RUN_ID"
-            break
-          done
-
-          if [ -z "$SELECTED_RUN" ]; then
-            echo "Could not find a non-exempt successful build."
-            exit 1
-          fi
-
-          echo "Selected run: $SELECTED_RUN"
-          echo "run_id=$SELECTED_RUN" >> "$GITHUB_OUTPUT"
+          echo "Latest successful run: $RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
 
       - name: Download revenge-bundle artifact
         env:
@@ -96,15 +59,6 @@ jobs:
 
           echo "Found bundle at: $BUNDLE"
 
-          # Check if this exact bundle is already installed.
-          if [ -f "./revenge.bundle" ] && cmp -s "$BUNDLE" "./revenge.bundle"; then
-            echo "revenge.bundle from run ${{ steps.latest.outputs.run_id }} is already installed."
-            rm -rf downloaded-artifact
-            exit 0
-          fi
-
-          echo "Installing revenge.bundle from run ${{ steps.latest.outputs.run_id }}"
-
           cp "$BUNDLE" ./revenge.bundle
 
           rm -rf downloaded-artifact
@@ -112,7 +66,7 @@ jobs:
       - name: Commit updated revenge.bundle
         run: |
           if git diff --quiet -- revenge.bundle; then
-            echo "No revenge.bundle update needed."
+            echo "revenge.bundle is already the newest version."
             exit 0
           fi
 
@@ -120,5 +74,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add revenge.bundle
-          git commit -m "Auto-update revenge.bundle from run ${{ steps.latest.outputs.run_id }}"
+          git commit -m "Auto-update revenge.bundle"
           git push
