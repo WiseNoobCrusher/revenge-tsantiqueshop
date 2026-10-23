@@ -1,0 +1,82 @@
+name: Update revenge.bundle
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # Check every 30 minutes
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout revenge-tsantiqueshop
+        uses: actions/checkout@v7
+
+      - name: Find latest successful Revenge build
+        id: latest
+        env:
+          GH_TOKEN: ${{ secrets.REVENGE_TOKEN }}
+        run: |
+          RUN_ID=$(gh run list \
+            --repo revenge-mod/revenge-bundle-next \
+            --workflow build.yml \
+            --branch main \
+            --status success \
+            --limit 1 \
+            --json databaseId \
+            --jq '.[0].databaseId')
+
+          if [ -z "$RUN_ID" ] || [ "$RUN_ID" = "null" ]; then
+            echo "Could not find a successful Build workflow."
+            exit 1
+          fi
+
+          echo "Latest successful run: $RUN_ID"
+          echo "run_id=$RUN_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Download revenge-bundle artifact
+        env:
+          GH_TOKEN: ${{ secrets.REVENGE_TOKEN }}
+        run: |
+          mkdir -p downloaded-artifact
+
+          gh run download "${{ steps.latest.outputs.run_id }}" \
+            --repo revenge-mod/revenge-bundle-next \
+            --name revenge-bundle \
+            --dir downloaded-artifact
+
+      - name: Replace revenge.bundle
+        run: |
+          BUNDLE=$(find downloaded-artifact -type f -name "revenge.bundle" | head -n 1)
+
+          if [ -z "$BUNDLE" ]; then
+            echo "ERROR: revenge.bundle was not found inside revenge-bundle."
+            find downloaded-artifact -type f
+            exit 1
+          fi
+
+          echo "Found bundle at: $BUNDLE"
+
+          cp "$BUNDLE" ./revenge.bundle
+
+          rm -rf downloaded-artifact
+
+      - name: Commit updated revenge.bundle
+        run: |
+          if git diff --quiet -- revenge.bundle; then
+            echo "revenge.bundle is already the newest version."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add revenge.bundle
+          git commit -m "Auto-update revenge.bundle"
+          git push
