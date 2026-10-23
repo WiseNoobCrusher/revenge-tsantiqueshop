@@ -2,8 +2,6 @@ name: Update revenge.bundle
 
 on:
   workflow_dispatch:
-  schedule:
-  - cron: "37 * * * *"
 
 permissions:
   contents: write
